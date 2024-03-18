@@ -1,21 +1,55 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 
 const LoginScreen = ({ navigation }) => {
-
+    const [Error, setError] = useState("");
+    const [ErrorPass, setErrorPass] = useState("");
     const [Email, setEmail] = useState("");
     const [Pasword, setPasword] = useState("");
     const [Hide, setHide] = useState(true);
     const [UnCheck, setUnCheck] = useState(true);
+
+    const checkEmail = (text) => {
+        setEmail(text);
+        console.log(text)
+        if (text === "") {
+            setError('Vui lòng không để trống');
+        } else {
+            setError('');
+        }
+    }
+    const checkPass = (text) => {
+        setPasword(text);
+        console.log(text)
+        if (text === "") {
+            setErrorPass('Vui lòng không để trống');
+        } else {
+            setErrorPass('');
+        }
+    }
+    const checkRemember = () => {
+        setUnCheck(!UnCheck);
+    }
     const LoginPress = () => {
-        navigation.navigate('Home');
+        if ((Email == "Admin@gmail.com" && Pasword == "Admin123@") || (Email == "0708332716" && Pasword == "Admin123@")) {
+            ToastAndroid.show("Đăng nhập thành công", ToastAndroid.SHORT);
+            navigation.navigate("Home");
+            console.log(Email, "+ ", Pasword)
+        } else {
+            ToastAndroid.show("Đăng nhập không thành công", ToastAndroid.SHORT);
+            setEmail("")
+            setPasword("")
+        }
     }
     const Forgot = () => {
         navigation.navigate('Register');
     }
     const CreateAccount = () => {
         navigation.navigate('Register');
+    }
+    const showHidePass = () => {
+        setHide(!Hide)
     }
     return (
         <View>
@@ -26,22 +60,35 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#000', textAlign: 'center' }}>Chào mừng bạn</Text>
                 <Text style={{ fontSize: 18, color: '#000', textAlign: 'center' }}>Đăng nhập tài khoản</Text>
-                <View style={[styles.borderEdt, { marginTop: 20 }]}>
-                    <TextInput placeholder='Nhập email hoặc số điện thoại'
-                        style={styles.textInput} />
+                <View style={[styles.borderEdt, Error && styles.borderError, { marginTop: 20 }]}>
+                    <TextInput
+                        placeholder='Nhập email hoặc số điện thoại'
+                        placeholderTextColor={{ color: '#333' } && styles.textError}
+                        style={[styles.textInput, Error && styles.borderError]}
+                        value={Email}
+                        onChangeText={checkEmail} />
                 </View>
-                <View style={[styles.borderEdt, styles.row_between, { marginTop: 10 }]}>
-                    <TextInput placeholder='Nhập mật khẩu'
-                        style={styles.textInput} />
-                    <TouchableOpacity>
-                        <Image source={require('../assets/image/hide.png')}
+                {Error ? <Text style={styles.textError}>{Error}</Text> : null}
+                <View style={[styles.borderEdt, styles.row_between, ErrorPass && styles.borderError, { marginTop: 10, }]}>
+                    <TextInput
+                        placeholder='Nhập mật khẩu'
+                        value={Pasword}
+                        onChangeText={checkPass}
+                        secureTextEntry={Hide}
+                        style={styles.textInput}
+                    />
+                    <TouchableOpacity onPress={showHidePass}>
+                        <Image source={Hide ? require('../assets/image/hide.png') : require('../assets/image/show.png')}
                             style={{ width: 29, height: 28 }} />
                     </TouchableOpacity>
                 </View>
+                {ErrorPass ? <Text style={styles.textError}>{ErrorPass}</Text> : null}
                 <View style={[styles.row_between, { marginTop: 15 }]}>
                     <View style={styles.row_between}>
-                        <Image source={require('../assets/image/check-mark.png')}
-                            style={{ width: 22, height: 22, marginRight: 5 }} />
+                        <TouchableOpacity onPress={checkRemember}>
+                            <Image source={UnCheck ? require('../assets/image/check-mark.png') : require('../assets/image/check.png')}
+                                style={{ width: 22, height: 22, marginRight: 5 }} />
+                        </TouchableOpacity>
                         <Text style={{ color: "#949090", fontSize: 12, }}>Nhớ tài khoản</Text>
                     </View>
                     <TouchableOpacity onPress={Forgot}>
@@ -120,6 +167,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    borderError: {
+        borderColor: 'red'
+    },
+    textError: {
+        color: 'red'
     }
 
 })

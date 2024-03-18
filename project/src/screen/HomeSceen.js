@@ -4,40 +4,42 @@ import { Item } from 'react-native-paper/lib/typescript/components/Drawer/Drawer
 import { DataPlant, listAccessory, listPlanta } from '../custom/Data';
 import NewCombo from '../custom/NewCombo';
 
-const renderPlant = ({ item }) => {
-  const { name, charactor, img, price } = item; // Destructure item directly
-  return (
-    <View style={{ width: 175, height: 'auto', backgroundColor: '#fff', marginRight: 15 }}>
-      <TouchableOpacity onPress={clickItemPlant}>
-        <Image source={img} style={{ width: '100%', height: 135, borderRadius: 10 }} />
-        <Text style={{ color: '#221F1F', fontSize: 14, fontWeight: 'bold' }}>{name}</Text>
-        <Text style={{ color: '#7D7B7B', fontSize: 16 }}>{charactor}</Text>
-        <Text style={{ color: '#007537', fontSize: 18, fontWeight: 'bold' }}>{price}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
-const renderListStand = ({ item }) => {
-  const { name, img, price } = item; // Destructure item directly
-  return (
-    <View style={{ width: 175, height: 'auto', backgroundColor: '#fff', marginRight: 15 }}>
-      <TouchableOpacity onPress={clickItemPlant}>
-        <Image source={img} style={{ width: '100%', height: 135, borderRadius: 10 }} />
-        <Text style={{ color: '#221F1F', fontSize: 14, fontWeight: 'bold' }}>{name}</Text>
-        <Text style={{ color: '#007537', fontSize: 18, fontWeight: 'bold' }}>{price}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
-const clickItemPlant = () => {
-  ToastAndroid.show("Click item", ToastAndroid.SHORT);
-}
 
-
-const clickPlant = () => {
-
-}
 const HomeSceen = ({ navigation }) => {
+  const renderPlant = ({ item }) => {
+    const { name, charactor, img, price } = item;
+    return (
+      <View style={{ width: 175, height: 'auto', backgroundColor: '#fff', marginRight: 15 }}>
+        <TouchableOpacity onPress={clickItemPlant}>
+          <Image source={img} style={{ width: '100%', height: 135, borderRadius: 10 }} />
+          <Text style={{ color: '#221F1F', fontSize: 14, fontWeight: 'bold' }}>{name}</Text>
+          <Text style={{ color: '#7D7B7B', fontSize: 16 }}>{charactor}</Text>
+          <Text style={{ color: '#007537', fontSize: 18, fontWeight: 'bold' }}>{price}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+  const renderListStand = ({ item }) => {
+    const { name, img, price } = item;
+    return (
+      <View style={{ width: 175, height: 'auto', backgroundColor: '#fff', marginRight: 15 }}>
+        <TouchableOpacity onPress={clickItemPlant}>
+          <Image source={img} style={{ width: '100%', height: 135, borderRadius: 10 }} />
+          <Text style={{ color: '#221F1F', fontSize: 14, fontWeight: 'bold' }}>{name}</Text>
+          <Text style={{ color: '#007537', fontSize: 18, fontWeight: 'bold' }}>{price}</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const clickItemPlant = () => {
+    navigation.navigate('Detail')
+  }
+
+  const clickPlant = () => {
+
+  }
+
   return (
     <View>
       <ScrollView >

@@ -15,6 +15,7 @@ import ItemInCart from './src/custom/ItemInCart';
 import B1 from './srcLab/lab1/B1';
 import B2 from './srcLab/lab1/B2';
 import B3 from './srcLab/lab1/B3';
+import B1_L2 from './srcLab/lab2/B1_L2';
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createMaterialBottomTabNavigator();
@@ -73,16 +74,14 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden={false} />
-      {/* <StackNavigation /> */}
-      <View style={styles.containerLab}>
-        {/* <B1 /> */}
-        {/* <B2 /> */}
-        <B3 />
-      </View>
+      <StackNavigation />
+      {/* <B3 /> */}
     </SafeAreaView>
   );
 };
+/*
 
+*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,

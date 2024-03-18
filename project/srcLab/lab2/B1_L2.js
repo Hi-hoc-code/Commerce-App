@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import AnimationNe from './AnimationNe'
+import A1 from './A1'
 
 const B1_L2 = () => {
     return (
         <View>
-            <Text>B1_L2</Text>
+            <AnimationNe />
+            {/* <A1 /> */}
         </View>
     )
 }

@@ -19,7 +19,8 @@ const B3 = () => {
             <TextInput
                 style={[styles.input, error && styles.inputError]}
                 value={inputText}
-                onChangeText={handleInputChange} />
+                onChangeText={handleInputChange}
+            />
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
         </View>
     );
@@ -28,14 +29,12 @@ const B3 = () => {
 const styles = StyleSheet.create({
     container: {
         marginVertical: 10,
-        borderRadius: 8
     },
     input: {
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,
         paddingHorizontal: 10,
-        borderRadius: 15
     },
     inputError: {
         borderColor: 'red',

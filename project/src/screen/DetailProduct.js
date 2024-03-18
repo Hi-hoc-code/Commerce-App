@@ -6,7 +6,6 @@ import { PaperProvider } from 'react-native-paper'
 const DetailProduct = ({ image, title, charactor, price, size, orig, amount, type }) => {
     return (
         <ScrollView>
-
             <View style={styles.container}>
                 <HeaderCustom
                     leftIcon={require('../assets/image/back.png')}
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
-        marginTop:20
+        marginTop: 20
 
     },
     row_between: {
